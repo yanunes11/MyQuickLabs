@@ -10,8 +10,6 @@ const MyComponent = () => {
         number={10} // SP1.2
         />
     </> // CWP8
-    git config --global user.email "yannunes112@gmail.com"
-    git config --global user.name "yannunes11"
  );
 };
 
