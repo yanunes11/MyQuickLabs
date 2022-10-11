@@ -6,12 +6,13 @@ import 'jquery';
 import './Components/css/qa.css';
 import Header from './Components/Header'; // H9
 import Footer from './Components/Footer'; // F8
+import AllTodos from './Components/AllTodos';
 function App() {
  return (
   <div className='container'>
     <Header />
     <div className='container'>
-      <h1>Other UIs go here</h1>
+      <AllTodos/>
     </div>
     <Footer />
   </div>
