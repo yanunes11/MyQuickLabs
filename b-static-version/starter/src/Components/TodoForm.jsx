@@ -7,8 +7,9 @@ const TodoForm = () => {
     const [todoCompleted, setTodoCompleted] = useState(false);
     return (
         <form>
+            {/* DESCRIPTION */}
             <div className="form-group">
-                <label htmlFor="todoDescription">Description:&nbsp;</label>
+                <label htmlFor="todoDescription">Description: &nbsp;</label>
                 <input
                     type="text"
                     name="todoDescription"
@@ -19,17 +20,20 @@ const TodoForm = () => {
                     setTodoDescription(event.target.value)}
                 />
             </div>
+            
+            {/* DATE CREATED */}
             <div className="form-group">
-                <label htmlFor="todoDateCreated">
-                    Created on:&nbsp;
+                <label htmlFor="todoDateCreated">Created on: &nbsp;
                 </label>
                 <DateCreated
                     updateDateCreated={dateCreated =>
                     setTodoDateCreated(dateCreated)
                 } />
             </div>
+
+            {/* COMPLETED */}
             <div className="form-group">
-                <label htmlFor="todoCompleted">Completed:&nbsp;</label>
+                <label htmlFor="todoCompleted">Completed: &nbsp;</label>
                 <input
                 type="checkbox"
                 name="todoCompleted"
@@ -38,6 +42,8 @@ const TodoForm = () => {
                     setTodoCompleted(event.target.checked)}
                 />
             </div>
+            
+            {/* SUBMIT */}
             <div className="form-group">
                 <input
                 type="submit"
