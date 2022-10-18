@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import DateCreated from './utils/DateCreated';
+import PropTypes from 'prop-types';
 
-const TodoForm = () => {
+
+const TodoForm = props => {
 
     const [todoDescription, setTodoDescription] = useState(``);
     const [todoDateCreated, setTodoDateCreated] = useState(null);
     const [todoCompleted, setTodoCompleted] = useState(false);
 
+    const handleSubmit = event => {
+        event.preventDefault();
+        props.submitTodo(todoDescription, todoDateCreated, todoCompleted);
+        setTodoDescription('');
+        setTodoDateCreated(null);
+        setTodoCompleted(false);
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className="form-group">
                 <label htmlFor="todoDescription">Description:&nbsp;</label>
                 <input
@@ -40,6 +50,10 @@ const TodoForm = () => {
             </div>
         </form>
     );
+};
+
+TodoForm.propTypes = {
+    submitTodo: PropTypes.func.isRequired
 };
 
 export default TodoForm;

@@ -15,12 +15,17 @@ function App() {
 
   const [todos, setTodos] = useState(sampleTodos);
 
+  const submitTodo = todo => {
+    const upDateTodos = [...todos, todo];
+    setTodos(upDateTodos);
+
+  }
   return (
     <div className="container">
       <Header />
       <div className="container">
         <AllTodos data={{ todos }} />
-        <AddEditTodo />
+        <AddEditTodo submitTodo={submitTodo}/>
       </div>
       <Footer />
     </div>
