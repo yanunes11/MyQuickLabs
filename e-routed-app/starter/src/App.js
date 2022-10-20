@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 import 'popper.js';
@@ -67,19 +68,19 @@ function App() {
   };
 
   return (
-    <>
+    <Router>
       {getError && <Modal handleClose={() => setGetError(``)} message={getError} />}
       {putError && <Modal handleClose={() => setPutError(``)} message={putError} />}
       {postError && <Modal handleClose={() => setPostError(``)} message={postError} />}
       <div className="container">
         <Header />
-        <div className="container">
-          <AllTodos data={todos} selectTodo={selectTodo} />
-          <AddEditTodo submitTodo={submitTodo} updateTodo={updateTodo} todo={todoToEdit} />
-        </div>
+        <Routes>
+          <Route path='/' element={<AllTodos data={todos} selectTodo={selectTodo} />}/>
+          <Route path='/add' element={<AddEditTodo submitTodo={submitTodo} updateTodo={updateTodo} todo={todoToEdit} />}/>
+        </Routes>
         <Footer />
       </div>
-    </>
+    </Router>
   );
 }
 
