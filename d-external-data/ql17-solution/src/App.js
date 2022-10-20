@@ -6,7 +6,6 @@ import 'jquery';
 import './Components/css/qa.css';
 import axios from 'axios';
 import Modal from './Components/utils/Modal';
-
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import AllTodos from './Components/AllTodos';
@@ -17,6 +16,7 @@ const TODOSURL = `http://localhost:4000/todos`;
 function App() {
   const [todos, setTodos] = useState({});
   const [getError, setGetError] = useState(``);
+  const [postError, setPostError] = useState('');
 
   useEffect(() => {
     const getData = async () => {
@@ -36,14 +36,21 @@ function App() {
     }
   };
 
-  const submitTodo = todo => {
-    const updatedTodos = [...todos.todos, todo];
-    setTodos({ todos: updatedTodos });
+  const submitTodo = async todo => {
+    setPostError('');
+    try {
+      await axios.post(TODOSURL, todo);
+    } catch (e) {
+      setPostError(`catch error on submitTodo on App.js ${e.message}`);
+    } finally {
+      setTodos(await getTodos());
+    }
   }
 
   return (
     <>
       {getError && <Modal handleClose={() => setGetError(``)} message={getError} />}
+      {postError && <Modal handleClose={() => setPostError('')} show={postError} />}
       <div className="container">
         <Header />
         <div className="container">
